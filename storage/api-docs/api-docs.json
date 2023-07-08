@@ -1,0 +1,1213 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Mohir kids Api Documentation",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "bakhriddin.inamov@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://mohir-kids.test/api/v1",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/api": {},
+        "/children/create": {
+            "post": {
+                "tags": [
+                    "Parents"
+                ],
+                "summary": "Create children",
+                "description": "Create new children",
+                "operationId": "childrenCreate",
+                "parameters": [
+                    {
+                        "name": "bearer",
+                        "in": "header",
+                        "description": "Parent access token",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChildrenCreateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChildrenModel"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/children/check-code": {
+            "post": {
+                "tags": [
+                    "Children"
+                ],
+                "summary": "Check children code",
+                "description": "Children check code",
+                "operationId": "childrenCheckCode",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChildrenCheckCodeRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChildrenResponseObject"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/children/login": {
+            "post": {
+                "tags": [
+                    "Children"
+                ],
+                "description": "Chidlren login",
+                "operationId": "childrenLogin",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChildrenLoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ParentAccessTokenResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/children/me": {
+            "get": {
+                "tags": [
+                    "Children"
+                ],
+                "summary": "Children me",
+                "description": "Returns children model",
+                "operationId": "childrenMe",
+                "parameters": [
+                    {
+                        "name": "bearer",
+                        "in": "header",
+                        "description": "Children access token",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChildrenModel"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/course/list": {
+            "get": {
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "Get list of courses",
+                "description": "Get a list of courses",
+                "operationId": "courseList",
+                "parameters": [
+                    {
+                        "name": "bearer",
+                        "in": "header",
+                        "description": "Children access token",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CourseResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/course/{id}": {
+            "get": {
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "Get course",
+                "description": "Get a single course",
+                "operationId": "getCourse",
+                "parameters": [
+                    {
+                        "name": "bearer",
+                        "in": "header",
+                        "description": "Children access token",
+                        "required": true
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Course id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CourseResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/parent/login": {
+            "post": {
+                "tags": [
+                    "Parents"
+                ],
+                "summary": "Login parents",
+                "description": "Returns message",
+                "operationId": "storeProject",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ParentLoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ParentResponseObject"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Parent not Found"
+                    }
+                }
+            }
+        },
+        "/parent/create": {
+            "post": {
+                "tags": [
+                    "Parents"
+                ],
+                "summary": "Parent create",
+                "description": "Returns message",
+                "operationId": "parentCreate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ParentCreateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ParentResponseObject"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/parent/login/attempt": {
+            "post": {
+                "tags": [
+                    "Parents"
+                ],
+                "summary": "Parent login attempt",
+                "description": "Returns message",
+                "operationId": "loginAttempt",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CheckSmsTokenRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ParentAccessTokenResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/parent/me": {
+            "get": {
+                "tags": [
+                    "Parents"
+                ],
+                "summary": "Parent me",
+                "description": "Returns parent model",
+                "operationId": "parentMe",
+                "parameters": [
+                    {
+                        "name": "bearer",
+                        "in": "header",
+                        "description": "Access token",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ParentModel"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/parent/childrens": {
+            "get": {
+                "tags": [
+                    "Parents"
+                ],
+                "summary": "Parent childrens",
+                "description": "Returns parent childrens",
+                "operationId": "parentChildrens",
+                "parameters": [
+                    {
+                        "name": "bearer",
+                        "in": "header",
+                        "description": "Parent access token",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChildrenModel"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/quizzes": {
+            "get": {
+                "tags": [
+                    "Quiz"
+                ],
+                "summary": "Get list of quizzes",
+                "description": "Get a list of quizzes",
+                "operationId": "quizzesList",
+                "parameters": [
+                    {
+                        "name": "bearer",
+                        "in": "header",
+                        "description": "Children access token",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/QuizzesResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/quiz/{id}": {
+            "get": {
+                "tags": [
+                    "Quiz"
+                ],
+                "summary": "Get quiz",
+                "description": "Get a single quiz",
+                "operationId": "getQuiz",
+                "parameters": [
+                    {
+                        "name": "bearer",
+                        "in": "header",
+                        "description": "Children access token",
+                        "required": true
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Quiz id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/QuizResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CheckSmsTokenRequest": {
+                "title": "Check sms token request",
+                "description": "Check sms token request body",
+                "required": [
+                    "phone",
+                    "code"
+                ],
+                "properties": {
+                    "phone": {
+                        "title": "phone",
+                        "description": "Parent phone number",
+                        "type": "string",
+                        "example": "+998950330455"
+                    },
+                    "code": {
+                        "title": "code",
+                        "description": "Code from sms",
+                        "type": "string",
+                        "example": "123456"
+                    }
+                },
+                "type": "object"
+            },
+            "ChildrenCheckCodeRequest": {
+                "title": "Check children code",
+                "description": "Check children code",
+                "required": [
+                    "code"
+                ],
+                "properties": {
+                    "code": {
+                        "title": "code",
+                        "description": "children code",
+                        "type": "string",
+                        "format": "string",
+                        "example": "1234123412341234"
+                    }
+                },
+                "type": "object"
+            },
+            "ChildrenCreateRequest": {
+                "title": "Children create request",
+                "description": "Children create request body",
+                "required": [
+                    "name",
+                    "birthdate",
+                    "grade",
+                    "whois"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Ismi",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Abror"
+                    },
+                    "birthdate": {
+                        "title": "birthdate",
+                        "description": "Tugilgan kuni",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2022-03-01"
+                    },
+                    "grade": {
+                        "title": "grade",
+                        "description": "Sinfi kiritish ixtiyoriy",
+                        "type": "string",
+                        "format": "string",
+                        "example": "7-sinf"
+                    },
+                    "whois": {
+                        "title": "whois",
+                        "description": "Siz unga kim bolasiz",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Dadasi"
+                    }
+                },
+                "type": "object"
+            },
+            "ChildrenLoginRequest": {
+                "title": "Children login request",
+                "description": "Children login request body",
+                "required": [
+                    "code",
+                    "password"
+                ],
+                "properties": {
+                    "code": {
+                        "title": "code",
+                        "description": "Children code",
+                        "type": "string",
+                        "format": "int32",
+                        "example": "1234123412341234"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "Children password",
+                        "type": "string",
+                        "format": "int32",
+                        "example": "123123"
+                    }
+                },
+                "type": "object"
+            },
+            "ChildrenResponseObject": {
+                "title": "ChildrenResponse",
+                "description": "Parent response",
+                "properties": {
+                    "status": {
+                        "title": "status",
+                        "description": "Status code",
+                        "type": "string",
+                        "example": "201"
+                    },
+                    "message": {
+                        "title": "message",
+                        "description": "Message",
+                        "type": "string",
+                        "example": "Children found, please enter a code"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ChildrenResponseObject"
+                }
+            },
+            "ChildrenModel": {
+                "title": "Children",
+                "description": "Children model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "name",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Nematjon"
+                    },
+                    "birthdate": {
+                        "title": "birthdate",
+                        "description": "birthdate",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2022-01-01"
+                    },
+                    "grade": {
+                        "title": "grade",
+                        "description": "grade",
+                        "type": "string",
+                        "format": "string",
+                        "example": "7-sinf"
+                    },
+                    "whois": {
+                        "title": "whois",
+                        "description": "whois",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Dadasi"
+                    },
+                    "image": {
+                        "title": "image",
+                        "description": "image url",
+                        "type": "string",
+                        "format": "string",
+                        "example": "https://mohir-kids.uz/blank.png"
+                    },
+                    "code": {
+                        "title": "code",
+                        "description": "code",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "abrorakmalov#1275"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "password",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "123456"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ChildrenModel"
+                }
+            },
+            "CourseModel": {
+                "title": "Course",
+                "description": "Course model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Parent name",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Sanashni organamiz"
+                    },
+                    "image": {
+                        "title": "image",
+                        "description": "Image url",
+                        "type": "string",
+                        "format": "string",
+                        "example": "https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png"
+                    },
+                    "background": {
+                        "title": "background",
+                        "description": "Background image url",
+                        "type": "string",
+                        "format": "string",
+                        "example": "https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "CourseModel"
+                }
+            },
+            "CourseVideoModel": {
+                "title": "CourseVideos",
+                "description": "Course video model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "Course title",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Sanashni organamiz 1-qism"
+                    },
+                    "video": {
+                        "title": "video",
+                        "description": "Course video",
+                        "type": "string",
+                        "format": "string",
+                        "example": "https://vimeo.com/joaopombeiro/chicago"
+                    },
+                    "video_url": {
+                        "title": "video",
+                        "description": "Course video",
+                        "type": "string",
+                        "format": "string",
+                        "example": "https://player.vimeo.com/video/696218740?h=54fadb098d"
+                    },
+                    "info": {
+                        "title": "info",
+                        "description": "Video description",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Sanashni organamiz 1-qism"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "CourseVideoModel"
+                }
+            },
+            "ParentModel": {
+                "title": "Parent",
+                "description": "Parent model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Parent name",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Nematjon"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "Parent phone number",
+                        "type": "string",
+                        "format": "string",
+                        "example": "+998950330455"
+                    },
+                    "image": {
+                        "title": "image",
+                        "description": "Image url",
+                        "type": "string",
+                        "format": "string",
+                        "example": "https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png"
+                    },
+                    "is_free": {
+                        "title": "is_free",
+                        "description": "Free user",
+                        "type": "boolean",
+                        "format": "boolean",
+                        "example": "true"
+                    },
+                    "is_active": {
+                        "title": "is_active",
+                        "description": "Active user",
+                        "type": "boolean",
+                        "format": "boolean",
+                        "example": "true"
+                    },
+                    "remember_token": {
+                        "title": "remember_token",
+                        "description": "Remember token",
+                        "type": "string",
+                        "format": "string",
+                        "example": "asdasdasfasfasd",
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "title": "created_at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "string",
+                        "example": "2022-04-04T10:10:10",
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "title": "updated_at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "string",
+                        "example": "2022-04-04T10:10:10",
+                        "nullable": true
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ParentModel"
+                }
+            },
+            "QuizModel": {
+                "title": "Quiz",
+                "description": "Quiz model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Quiz name",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Sanashni organamiz"
+                    },
+                    "image": {
+                        "title": "image",
+                        "description": "Image url",
+                        "type": "string",
+                        "format": "string",
+                        "example": "https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png"
+                    },
+                    "background": {
+                        "title": "background",
+                        "description": "Background image url",
+                        "type": "string",
+                        "format": "string",
+                        "example": "https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png"
+                    },
+                    "info": {
+                        "title": "info",
+                        "description": "Quiz info",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Sanashni organamiz"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "QuizModel"
+                }
+            },
+            "QuizQuestionModel": {
+                "title": "Question",
+                "description": "Quiz question model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    },
+                    "question": {
+                        "title": "question",
+                        "description": "Question",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Ingliz tilitda Otni nima deyiladi?"
+                    },
+                    "answer_1": {
+                        "title": "answer_1",
+                        "description": "Birinchi javob",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Cow"
+                    },
+                    "answer_2": {
+                        "title": "answer_2",
+                        "description": "Ikkinchi javob",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Lion"
+                    },
+                    "answer_3": {
+                        "title": "answer_3",
+                        "description": "Uchinchi javob",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Horse"
+                    },
+                    "answer_4": {
+                        "title": "answer_4",
+                        "description": "Tortinchi javob",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Cat"
+                    },
+                    "correct_answer": {
+                        "title": "correct_answer",
+                        "description": "Togri javob",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "3"
+                    },
+                    "quiz_id": {
+                        "title": "quiz_id",
+                        "description": "Quiz id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "QuizQuestionModel"
+                }
+            },
+            "ParentAccessTokenResponse": {
+                "title": "Parent access token response",
+                "description": "Parent access token response",
+                "required": [
+                    "name",
+                    "phone"
+                ],
+                "properties": {
+                    "access_token": {
+                        "title": "access token",
+                        "description": "Access token",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "token_type": {
+                        "title": "token type",
+                        "description": "Access token type",
+                        "type": "string",
+                        "example": "bearer"
+                    },
+                    "expires_in": {
+                        "title": "expires time",
+                        "description": "Expires access token time",
+                        "type": "string",
+                        "example": "86400"
+                    }
+                },
+                "type": "object"
+            },
+            "ParentCreateRequest": {
+                "title": "Parent create request",
+                "description": "Parent create request body",
+                "required": [
+                    "name",
+                    "phone"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Parent name",
+                        "type": "string",
+                        "example": "Nematjon"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "Parent phone number",
+                        "type": "string",
+                        "example": "+998950330455"
+                    }
+                },
+                "type": "object"
+            },
+            "ParentLoginRequest": {
+                "title": "Parent login request",
+                "description": "Parent login request body",
+                "required": [
+                    "phone"
+                ],
+                "properties": {
+                    "phone": {
+                        "title": "phone",
+                        "description": "Parent phone number",
+                        "type": "string",
+                        "example": "+998950330455"
+                    }
+                },
+                "type": "object"
+            },
+            "ParentResponseObject": {
+                "title": "ParentResponse",
+                "description": "Parent response",
+                "properties": {
+                    "status": {
+                        "title": "status",
+                        "description": "Status code",
+                        "type": "string",
+                        "example": "201"
+                    },
+                    "message": {
+                        "title": "message",
+                        "description": "Message",
+                        "type": "string",
+                        "example": "Sms successfully sent"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ParentResponseObject"
+                }
+            },
+            "CourseResource": {
+                "title": "CourseResource",
+                "description": "Course resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {}
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "CourseResource"
+                }
+            },
+            "QuizResource": {
+                "title": "QuizResource",
+                "description": "Quiz resource",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Quiz name",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Sanashni organamiz"
+                    },
+                    "image": {
+                        "title": "image",
+                        "description": "Image url",
+                        "type": "string",
+                        "format": "string",
+                        "example": "https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png"
+                    },
+                    "background": {
+                        "title": "background",
+                        "description": "Background image url",
+                        "type": "string",
+                        "format": "string",
+                        "example": "https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png"
+                    },
+                    "info": {
+                        "title": "info",
+                        "description": "Quiz info",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Sanashni organamiz"
+                    },
+                    "is_active": {
+                        "title": "is_active",
+                        "description": "1",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    },
+                    "questions": {
+                        "$ref": "#/components/schemas/QuizQuestionModel"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "QuizResource"
+                }
+            },
+            "QuizzesResource": {
+                "title": "QuizzesResource",
+                "description": "Quizzes resource",
+                "properties": {
+                    "quizzes": {
+                        "$ref": "#/components/schemas/QuizModel"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "QuizzesResource"
+                }
+            }
+        }
+    }
+}
